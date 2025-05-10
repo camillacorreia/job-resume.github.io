@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Camilla Correia - Curriculum Vitae</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+        }
+        main {
+            padding: 40px;
+        }
+        h1, h2 {
+            font-size: 2em;
+        }
+        .competencies, .languages, .cv-links {
+            margin: 20px 0;
+        }
+        .cv-links {
+            margin-bottom: 100px;
+        }
+        .cv-links a, .competencies ul li, .languages ul li {
+            font-size: 1.2em;
+            color: #333;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+        }
+        .cv-links a {
+            border: 2px solid #333;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .cv-links a:hover {
+            background-color: #333;
+            color: #fff;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .competencies ul {
+            text-align: left;
+            margin: 0;
+            padding: 0;
+        }
+        .competencies ul li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>Camilla Correia - Curriculum Vitae</h1>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <section class="languages">
+            <h2>Languages</h2>
+            <ul>
+                <li>🇧🇷 Native Portuguese</li>
+                <li>🇦🇷 B2 Intermediate-Advanced Spanish</li>
+                <li>🇺🇸 B1 Intermediate English</li>
+            </ul>
+        </section>
+
+        <section class="education">
+            <h2>Education</h2>
+            <p>Bachelor's Degree in Science and Technology from the Universidade Federal da Bahia</p>
+        </section>
+
+        <section class="competencies">
+            <h2>Competencies</h2>
+            <ul>
+                <li><strong>Languages:</strong> JavaScript/TypeScript, Java, Scala, Python, Go</li>
+                <li><strong>Front-End:</strong> React, Angular, Next.js, Styled-components, Sass, Bootstrap</li>
+                <li><strong>Design:</strong> Figma</li>
+                <li><strong>Back-End:</strong> Node.js, NestJS, Spring Boot</li>
+                <li><strong>ORMs:</strong> Hibernate, TypeORM, Prisma</li>
+                <li><strong>Query Languages/Databases:</strong> GraphQL, MySQL, PostgreSQL, SQLite, Google Cloud Bigtable</li>
+                <li><strong>Testing:</strong> Testing Library, Enzyme, Jest, Jasmine, Karma, Cypress, Protractor</li>
+                <li><strong>CMS:</strong> Strapi, GraphCMS, Prismic CMS</li>
+                <li><strong>Containerization and Orchestration:</strong> Docker, Kubernetes</li>
+                <li><strong>Messaging and Streaming:</strong> Kafka, RabbitMQ</li>
+                <li><strong>Cloud Platforms:</strong> Google Cloud Platform, Heroku (PaaS), Vercel (PaaS), Netlify (PaaS)</li>
+                <li><strong>Monitoring and Observability:</strong> Grafana, Graylog, Prometheus</li>
+                <li><strong>Dashboards:</strong> Metabase</li>
+                <li><strong>Low-Code:</strong> Retool</li>
+            </ul>
+        </section>
+
+        <section class="cv-links">
+            <h2>Download My CV</h2>
+            <a href="curriculo-camilla-correia-pt.pdf" download="Curriculum_Portuguese">Download CV in Portuguese</a>
+            <a href="curriculum-camilla-correia-es.pdf" download="Curriculum_Español">Download CV in Spanish</a>
+            <a href="job-resume-camilla-correia-en.pdf" download="Curriculum_English">Download CV in English</a>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <p>© <span id="year"></span> Camilla Correia</p>
+</footer>
+
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
