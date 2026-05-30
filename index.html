@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Camilla Correia — Full-Stack Software Engineer especializada em avaliação de LLMs, prompt engineering e LLMOps.">
+    <meta name="description" content="Camilla Correia — Senior Software Engineer specialized in LLM evaluation, prompt engineering and LLMOps.">
     <title>Camilla Correia — Senior Software Engineer</title>
     <style>
         :root {
@@ -44,12 +44,21 @@
         }
         .nav-inner {
             max-width: var(--max); margin: 0 auto; padding: 14px 22px;
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex; justify-content: space-between; align-items: center; gap: 14px;
         }
         .monogram { font-weight: 800; color: var(--heading); letter-spacing: 1px; font-size: 16px; }
+        .nav-right { display: flex; align-items: center; gap: 18px; }
         .nav-links { display: flex; gap: 20px; font-size: 14px; }
         .nav-links a { color: var(--muted); transition: color .2s; }
         .nav-links a:hover { color: var(--accent-light); }
+        .lang-switch { display: flex; gap: 4px; }
+        .lang-switch button {
+            background: transparent; border: 1px solid var(--border); color: var(--muted);
+            font-size: 12px; font-weight: 600; padding: 4px 9px; border-radius: 6px;
+            cursor: pointer; font-family: inherit; transition: all .2s;
+        }
+        .lang-switch button:hover { color: var(--accent-light); border-color: var(--border-soft); }
+        .lang-switch button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
         /* Section scaffolding */
         section { padding: 56px 0; border-top: 1px solid var(--border); }
@@ -133,9 +142,6 @@
         .job .role { color: var(--accent-light); font-size: 14px; }
         .job .meta { color: var(--dim); font-size: 13px; margin-top: 2px; }
         .job .desc { color: var(--muted); font-size: 14px; margin: 10px 0 0; }
-        .job ul.points { list-style: none; padding: 0; margin: 10px 0 0; }
-        .job ul.points li { color: var(--muted); font-size: 14px; margin-bottom: 6px; padding-left: 16px; position: relative; }
-        .job ul.points li::before { content: "▹"; position: absolute; left: 0; color: var(--accent); }
         .job .stack { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
         .job .stack .tag { font-size: 12px; padding: 3px 9px; }
 
@@ -159,7 +165,7 @@
         footer { text-align: center; padding: 26px 0; color: var(--dim); font-size: 13px; }
 
         /* Responsive */
-        @media (max-width: 720px) {
+        @media (max-width: 760px) {
             .nav-links { gap: 14px; font-size: 13px; }
             .nav-links a.hide-sm { display: none; }
             .hero h1 { font-size: 30px; }
@@ -167,19 +173,29 @@
             .skills-grid { grid-template-columns: 1fr; }
             .two-col { grid-template-columns: 1fr; gap: 22px; }
         }
+        @media (max-width: 520px) {
+            .nav-links { display: none; }
+        }
     </style>
 </head>
 <body>
 
-<nav aria-label="Navegação principal">
+<nav aria-label="Main navigation">
     <div class="nav-inner">
         <a href="#top" class="monogram">CC</a>
-        <div class="nav-links">
-            <a href="#sobre">Sobre</a>
-            <a href="#foco" class="hide-sm">Foco</a>
-            <a href="#skills">Skills</a>
-            <a href="#experiencia">Experiência</a>
-            <a href="#contato">Contato</a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="#sobre" data-i18n="nav.about">Sobre</a>
+                <a href="#foco" class="hide-sm" data-i18n="nav.focus">Foco</a>
+                <a href="#skills" data-i18n="nav.skills">Skills</a>
+                <a href="#experiencia" data-i18n="nav.experience">Experiência</a>
+                <a href="#contato" data-i18n="nav.contact">Contato</a>
+            </div>
+            <div class="lang-switch" role="group" aria-label="Language">
+                <button type="button" data-lang="pt" onclick="setLang('pt')">PT</button>
+                <button type="button" data-lang="es" onclick="setLang('es')">ES</button>
+                <button type="button" data-lang="en" onclick="setLang('en')">EN</button>
+            </div>
         </div>
     </div>
 </nav>
@@ -189,12 +205,12 @@
     <!-- Hero -->
     <header class="hero">
         <div class="wrap">
-            <img class="avatar" src="perfil-ia.png" alt="Foto de Camilla Correia">
+            <img class="avatar" src="perfil-ia.png" alt="Camilla Correia">
             <div class="eyebrow">Senior Software Engineer</div>
             <h1>Camilla Correia</h1>
-            <p class="tagline">Engenheira full-stack há mais de 5 anos, com especialização crescente em avaliação de LLMs, prompt engineering e LLMOps. Unindo rigor técnico e impacto real.</p>
+            <p class="tagline" data-i18n="hero.tagline">Engenheira full-stack há mais de 5 anos, com especialização crescente em avaliação de LLMs, prompt engineering e LLMOps. Unindo rigor técnico e impacto real.</p>
             <div class="cta">
-                <a class="btn btn-primary" href="#contato">↓ Baixar CV</a>
+                <a class="btn btn-primary" href="#contato" data-i18n="hero.cv">↓ Baixar CV</a>
                 <a class="btn btn-ghost" href="https://github.com/camillacorreia" target="_blank" rel="noopener">GitHub</a>
                 <a class="btn btn-ghost" href="https://www.linkedin.com/in/camillacorreia/" target="_blank" rel="noopener">LinkedIn</a>
             </div>
@@ -204,34 +220,34 @@
     <!-- Sobre -->
     <section id="sobre" class="about" aria-labelledby="sobre-title">
         <div class="wrap">
-            <div class="eyebrow">Sobre</div>
-            <h2 class="section-title" id="sobre-title">Quem sou</h2>
-            <p class="lead">Atualmente sou Senior Software Engineer no <strong>Jusbrasil</strong>, uma legaltech que une Direito e Tecnologia para ampliar o acesso à justiça.</p>
-            <p>Sou apaixonada por resolver problemas complexos em sistemas de IA e criar soluções inovadoras que gerem impacto real — garantindo que sistemas de IA jurídica sejam precisos, confiáveis e seguros antes de chegarem aos usuários.</p>
+            <div class="eyebrow" data-i18n="sobre.eyebrow">Sobre</div>
+            <h2 class="section-title" id="sobre-title" data-i18n="sobre.title">Quem sou</h2>
+            <p class="lead" data-i18n="sobre.lead" data-i18n-html>Atualmente sou Senior Software Engineer no <strong>Jusbrasil</strong>, uma legaltech que une Direito e Tecnologia para ampliar o acesso à justiça.</p>
+            <p data-i18n="sobre.p2">Sou apaixonada por resolver problemas complexos em sistemas de IA e criar soluções inovadoras que gerem impacto real — garantindo que sistemas de IA jurídica sejam precisos, confiáveis e seguros antes de chegarem aos usuários.</p>
         </div>
     </section>
 
     <!-- Foco atual -->
     <section id="foco" aria-labelledby="foco-title">
         <div class="wrap">
-            <div class="eyebrow">Foco atual</div>
-            <h2 class="section-title" id="foco-title">Pipelines de avaliação de LLMs</h2>
-            <p class="focus-intro">Design e implementação de pipelines de avaliação de LLMs no Jusbrasil, combinando três frentes:</p>
+            <div class="eyebrow" data-i18n="foco.eyebrow">Foco atual</div>
+            <h2 class="section-title" id="foco-title" data-i18n="foco.title">Pipelines de avaliação de LLMs</h2>
+            <p class="focus-intro" data-i18n="foco.intro">Design e implementação de pipelines de avaliação de LLMs no Jusbrasil, combinando três frentes:</p>
             <div class="grid-3">
                 <div class="focus-card">
                     <div class="ico">🤖</div>
-                    <h3>Avaliação Automática</h3>
-                    <p>Desenvolvimento de <em>judges</em> para avaliar conteúdo gerado por LLMs contra critérios jurídicos específicos.</p>
+                    <h3 data-i18n="foco.c1t">Avaliação Automática</h3>
+                    <p data-i18n="foco.c1p" data-i18n-html>Desenvolvimento de <em>judges</em> para avaliar conteúdo gerado por LLMs contra critérios jurídicos específicos.</p>
                 </div>
                 <div class="focus-card">
                     <div class="ico">🧑‍⚖️</div>
-                    <h3>Human-in-the-loop</h3>
-                    <p>Plataforma de avaliação manual integrada, coletando feedback humano para validação e otimização contínua.</p>
+                    <h3 data-i18n="foco.c2t">Human-in-the-loop</h3>
+                    <p data-i18n="foco.c2p">Plataforma de avaliação manual integrada, coletando feedback humano para validação e otimização contínua.</p>
                 </div>
                 <div class="focus-card">
                     <div class="ico">📊</div>
-                    <h3>Data-Driven Optimization</h3>
-                    <p>Uso rigoroso de benchmarks quantitativos e ferramentas de avaliação para decisões de deployment.</p>
+                    <h3 data-i18n="foco.c3t">Data-Driven Optimization</h3>
+                    <p data-i18n="foco.c3p">Uso rigoroso de benchmarks quantitativos e ferramentas de avaliação para decisões de deployment.</p>
                 </div>
             </div>
         </div>
@@ -240,13 +256,13 @@
     <!-- Skills -->
     <section id="skills" aria-labelledby="skills-title">
         <div class="wrap">
-            <div class="eyebrow">Competências</div>
-            <h2 class="section-title" id="skills-title">Skills &amp; ferramentas</h2>
+            <div class="eyebrow" data-i18n="skills.eyebrow">Competências</div>
+            <h2 class="section-title" id="skills-title" data-i18n="skills.title">Skills &amp; ferramentas</h2>
             <div class="skills-grid">
                 <div class="skill-card featured">
                     <div class="label">IA &amp; LLMOps</div>
                     <div class="tags">
-                        <span class="tag">Avaliação de LLMs</span>
+                        <span class="tag" data-i18n="skill.evalLLM">Avaliação de LLMs</span>
                         <span class="tag">Prompt Engineering</span>
                         <span class="tag">LLMOps</span>
                         <span class="tag">Claude Code</span>
@@ -271,7 +287,7 @@
                     </div>
                 </div>
                 <div class="skill-card">
-                    <div class="label">Infraestrutura</div>
+                    <div class="label" data-i18n="skill.infra">Infraestrutura</div>
                     <div class="tags">
                         <span class="tag">Google Cloud</span>
                         <span class="tag">AWS</span>
@@ -280,7 +296,7 @@
                     </div>
                 </div>
                 <div class="skill-card">
-                    <div class="label">Dados</div>
+                    <div class="label" data-i18n="skill.data">Dados</div>
                     <div class="tags">
                         <span class="tag">Airflow</span>
                         <span class="tag">Kafka</span>
@@ -288,7 +304,7 @@
                     </div>
                 </div>
                 <div class="skill-card">
-                    <div class="label">Monitoramento</div>
+                    <div class="label" data-i18n="skill.monitor">Monitoramento</div>
                     <div class="tags">
                         <span class="tag">Prometheus</span>
                         <span class="tag">Graylog</span>
@@ -297,7 +313,7 @@
                     </div>
                 </div>
                 <div class="skill-card">
-                    <div class="label">Bancos de dados</div>
+                    <div class="label" data-i18n="skill.db">Bancos de dados</div>
                     <div class="tags">
                         <span class="tag">PostgreSQL</span>
                         <span class="tag">MySQL</span>
@@ -312,16 +328,16 @@
     <!-- Experiência -->
     <section id="experiencia" aria-labelledby="exp-title">
         <div class="wrap">
-            <div class="eyebrow">Trajetória</div>
-            <h2 class="section-title" id="exp-title">Experiência</h2>
+            <div class="eyebrow" data-i18n="exp.eyebrow">Trajetória</div>
+            <h2 class="section-title" id="exp-title" data-i18n="exp.title">Experiência</h2>
             <div class="timeline">
                 <div class="job current">
                     <h3>Jusbrasil</h3>
-                    <div class="role">Senior Software Engineer</div>
-                    <div class="meta">dez 2024 – o momento · 1 ano 6 meses</div>
+                    <div class="role" data-i18n="role.senior">Senior Software Engineer</div>
+                    <div class="meta" data-i18n="meta.jus1">dez 2024 – o momento · 1 ano 6 meses</div>
                     <div class="stack">
-                        <span class="tag">Microserviços</span>
-                        <span class="tag">Microfrontends</span>
+                        <span class="tag" data-i18n="tag.microservices">Microserviços</span>
+                        <span class="tag" data-i18n="tag.microfrontends">Microfrontends</span>
                         <span class="tag">Monorepos</span>
                         <span class="tag">React</span>
                         <span class="tag">GraphQL</span>
@@ -337,18 +353,18 @@
                 </div>
                 <div class="job">
                     <h3>Jusbrasil</h3>
-                    <div class="role">Mid-level Software Engineer (Pleno)</div>
-                    <div class="meta">jan 2022 – dez 2024 · 3 anos</div>
+                    <div class="role" data-i18n="role.pleno">Mid-level Software Engineer (Pleno)</div>
+                    <div class="meta" data-i18n="meta.jus2">jan 2022 – dez 2024 · 3 anos</div>
                     <div class="stack">
                         <span class="tag">Elasticsearch</span>
                         <span class="tag">Docker</span>
-                        <span class="tag">+19 competências</span>
+                        <span class="tag" data-i18n="exp.more">+19 competências</span>
                     </div>
                 </div>
                 <div class="job">
                     <h3>PicPay</h3>
-                    <div class="role">Mid-level Front-End Software Engineer (Pleno)</div>
-                    <div class="meta">mai 2021 – jan 2022 · 9 meses · Remoto</div>
+                    <div class="role" data-i18n="role.picpay">Mid-level Front-End Software Engineer (Pleno)</div>
+                    <div class="meta" data-i18n="meta.picpay">mai 2021 – jan 2022 · 9 meses · Remoto</div>
                     <div class="stack">
                         <span class="tag">Angular</span>
                         <span class="tag">React</span>
@@ -365,14 +381,14 @@
                 </div>
                 <div class="job">
                     <h3>Cubos Academy</h3>
-                    <div class="role">Monitora de Lógica de Programação e Front-end</div>
-                    <div class="meta">set 2020 – mai 2021 · 9 meses · Freelance · Remoto</div>
-                    <p class="desc">Instrutora em curso intensivo de programação (6 meses): ReactJS, JavaScript, HTML, CSS.</p>
+                    <div class="role" data-i18n="role.academy">Monitora de Lógica de Programação e Front-end</div>
+                    <div class="meta" data-i18n="meta.academy">set 2020 – mai 2021 · 9 meses · Freelance · Remoto</div>
+                    <p class="desc" data-i18n="exp.academyDesc">Instrutora em curso intensivo de programação (6 meses): ReactJS, JavaScript, HTML, CSS.</p>
                 </div>
                 <div class="job">
                     <h3>Cubos Tecnologia</h3>
-                    <div class="role">Front-end Developer</div>
-                    <div class="meta">ago 2020 – mai 2021 · 10 meses · Estágio · Remoto</div>
+                    <div class="role" data-i18n="role.front">Front-end Developer</div>
+                    <div class="meta" data-i18n="meta.cubos">ago 2020 – mai 2021 · 10 meses · Estágio · Remoto</div>
                     <div class="stack">
                         <span class="tag">ReactJS</span>
                         <span class="tag">TypeScript</span>
@@ -384,8 +400,8 @@
                 </div>
                 <div class="job">
                     <h3>Diel Energia</h3>
-                    <div class="role">Front-end Developer</div>
-                    <div class="meta">out 2019 – ago 2020 · 11 meses · Salvador · Híbrido</div>
+                    <div class="role" data-i18n="role.front">Front-end Developer</div>
+                    <div class="meta" data-i18n="meta.diel">out 2019 – ago 2020 · 11 meses · Salvador · Híbrido</div>
                     <div class="stack">
                         <span class="tag">HTML</span>
                         <span class="tag">CSS</span>
@@ -401,22 +417,22 @@
     <!-- Education + Idiomas -->
     <section id="formacao" aria-labelledby="form-title">
         <div class="wrap">
-            <div class="eyebrow">Formação</div>
-            <h2 class="section-title" id="form-title">Educação &amp; idiomas</h2>
+            <div class="eyebrow" data-i18n="form.eyebrow">Formação</div>
+            <h2 class="section-title" id="form-title" data-i18n="form.title">Educação &amp; idiomas</h2>
             <div class="two-col">
                 <div>
-                    <h3>Educação</h3>
+                    <h3 data-i18n="edu.title">Educação</h3>
                     <ul>
-                        <li><strong style="color:var(--text)">Pós-graduanda</strong> — Engenharia de Software com Inteligência Artificial</li>
-                        <li><strong style="color:var(--text)">Bacharel</strong> — Ciência e Tecnologia, Universidade Federal da Bahia</li>
+                        <li data-i18n="edu.pos" data-i18n-html><strong style="color:var(--text)">Pós-graduanda</strong> — Engenharia de Software com Inteligência Artificial</li>
+                        <li data-i18n="edu.bac" data-i18n-html><strong style="color:var(--text)">Bacharel</strong> — Ciência e Tecnologia, Universidade Federal da Bahia</li>
                     </ul>
                 </div>
                 <div>
-                    <h3>Idiomas</h3>
+                    <h3 data-i18n="langs.title">Idiomas</h3>
                     <ul>
-                        <li>🇧🇷 Português — nativo</li>
-                        <li>🇦🇷 Espanhol — B2 intermediário-avançado</li>
-                        <li>🇺🇸 Inglês — B1 intermediário</li>
+                        <li data-i18n="langs.pt">🇧🇷 Português — nativo</li>
+                        <li data-i18n="langs.es">🇦🇷 Espanhol — B2 intermediário-avançado</li>
+                        <li data-i18n="langs.en">🇺🇸 Inglês — B1 intermediário</li>
                     </ul>
                 </div>
             </div>
@@ -426,9 +442,9 @@
     <!-- Contato / Downloads -->
     <section id="contato" class="contact" aria-labelledby="contato-title">
         <div class="wrap">
-            <div class="eyebrow">Contato</div>
-            <h2 class="section-title" id="contato-title" style="justify-content:center">Vamos conversar</h2>
-            <p style="color:var(--muted);margin-top:-14px">Baixe meu currículo no idioma de sua preferência:</p>
+            <div class="eyebrow" data-i18n="contact.eyebrow">Contato</div>
+            <h2 class="section-title" id="contato-title" style="justify-content:center" data-i18n="contact.title">Vamos conversar</h2>
+            <p style="color:var(--muted);margin-top:-14px" data-i18n="contact.sub">Baixe meu currículo no idioma de sua preferência:</p>
             <div class="dl-row">
                 <a class="btn btn-primary" href="curriculo-camilla-correia-pt.pdf" download>🇧🇷 Português</a>
                 <a class="btn btn-ghost" href="curriculum-camilla-correia-es.pdf" download>🇪🇸 Español</a>
@@ -450,6 +466,125 @@
 
 <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const I18N = {
+        pt: {
+            "nav.about": "Sobre", "nav.focus": "Foco", "nav.skills": "Skills", "nav.experience": "Experiência", "nav.contact": "Contato",
+            "hero.tagline": "Engenheira full-stack há mais de 5 anos, com especialização crescente em avaliação de LLMs, prompt engineering e LLMOps. Unindo rigor técnico e impacto real.",
+            "hero.cv": "↓ Baixar CV",
+            "sobre.eyebrow": "Sobre", "sobre.title": "Quem sou",
+            "sobre.lead": "Atualmente sou Senior Software Engineer no <strong>Jusbrasil</strong>, uma legaltech que une Direito e Tecnologia para ampliar o acesso à justiça.",
+            "sobre.p2": "Sou apaixonada por resolver problemas complexos em sistemas de IA e criar soluções inovadoras que gerem impacto real — garantindo que sistemas de IA jurídica sejam precisos, confiáveis e seguros antes de chegarem aos usuários.",
+            "foco.eyebrow": "Foco atual", "foco.title": "Pipelines de avaliação de LLMs",
+            "foco.intro": "Design e implementação de pipelines de avaliação de LLMs no Jusbrasil, combinando três frentes:",
+            "foco.c1t": "Avaliação Automática",
+            "foco.c1p": "Desenvolvimento de <em>judges</em> para avaliar conteúdo gerado por LLMs contra critérios jurídicos específicos.",
+            "foco.c2t": "Human-in-the-loop",
+            "foco.c2p": "Plataforma de avaliação manual integrada, coletando feedback humano para validação e otimização contínua.",
+            "foco.c3t": "Data-Driven Optimization",
+            "foco.c3p": "Uso rigoroso de benchmarks quantitativos e ferramentas de avaliação para decisões de deployment.",
+            "skills.eyebrow": "Competências", "skills.title": "Skills & ferramentas",
+            "skill.evalLLM": "Avaliação de LLMs", "skill.infra": "Infraestrutura", "skill.data": "Dados", "skill.monitor": "Monitoramento", "skill.db": "Bancos de dados",
+            "exp.eyebrow": "Trajetória", "exp.title": "Experiência", "exp.more": "+19 competências",
+            "exp.academyDesc": "Instrutora em curso intensivo de programação (6 meses): ReactJS, JavaScript, HTML, CSS.",
+            "role.senior": "Senior Software Engineer", "role.pleno": "Mid-level Software Engineer (Pleno)",
+            "role.picpay": "Mid-level Front-End Software Engineer (Pleno)", "role.academy": "Monitora de Lógica de Programação e Front-end",
+            "role.front": "Front-end Developer",
+            "meta.jus1": "dez 2024 – o momento · 1 ano 6 meses", "meta.jus2": "jan 2022 – dez 2024 · 3 anos",
+            "meta.picpay": "mai 2021 – jan 2022 · 9 meses · Remoto", "meta.academy": "set 2020 – mai 2021 · 9 meses · Freelance · Remoto",
+            "meta.cubos": "ago 2020 – mai 2021 · 10 meses · Estágio · Remoto", "meta.diel": "out 2019 – ago 2020 · 11 meses · Salvador · Híbrido",
+            "tag.microservices": "Microserviços", "tag.microfrontends": "Microfrontends",
+            "form.eyebrow": "Formação", "form.title": "Educação & idiomas", "edu.title": "Educação",
+            "edu.pos": "<strong style=\"color:var(--text)\">Pós-graduanda</strong> — Engenharia de Software com Inteligência Artificial",
+            "edu.bac": "<strong style=\"color:var(--text)\">Bacharel</strong> — Ciência e Tecnologia, Universidade Federal da Bahia",
+            "langs.title": "Idiomas", "langs.pt": "🇧🇷 Português — nativo", "langs.es": "🇦🇷 Espanhol — B2 intermediário-avançado", "langs.en": "🇺🇸 Inglês — B1 intermediário",
+            "contact.eyebrow": "Contato", "contact.title": "Vamos conversar", "contact.sub": "Baixe meu currículo no idioma de sua preferência:"
+        },
+        es: {
+            "nav.about": "Sobre mí", "nav.focus": "Enfoque", "nav.skills": "Skills", "nav.experience": "Experiencia", "nav.contact": "Contacto",
+            "hero.tagline": "Ingeniera full-stack desde hace más de 5 años, con especialización creciente en evaluación de LLMs, prompt engineering y LLMOps. Uniendo rigor técnico e impacto real.",
+            "hero.cv": "↓ Descargar CV",
+            "sobre.eyebrow": "Sobre mí", "sobre.title": "Quién soy",
+            "sobre.lead": "Actualmente soy Senior Software Engineer en <strong>Jusbrasil</strong>, una legaltech que une Derecho y Tecnología para ampliar el acceso a la justicia.",
+            "sobre.p2": "Me apasiona resolver problemas complejos en sistemas de IA y crear soluciones innovadoras con impacto real — garantizando que los sistemas de IA jurídica sean precisos, confiables y seguros antes de llegar a los usuarios.",
+            "foco.eyebrow": "Enfoque actual", "foco.title": "Pipelines de evaluación de LLMs",
+            "foco.intro": "Diseño e implementación de pipelines de evaluación de LLMs en Jusbrasil, combinando tres frentes:",
+            "foco.c1t": "Evaluación Automática",
+            "foco.c1p": "Desarrollo de <em>judges</em> para evaluar contenido generado por LLMs contra criterios jurídicos específicos.",
+            "foco.c2t": "Human-in-the-loop",
+            "foco.c2p": "Plataforma de evaluación manual integrada, recogiendo feedback humano para validación y optimización continua.",
+            "foco.c3t": "Data-Driven Optimization",
+            "foco.c3p": "Uso riguroso de benchmarks cuantitativos y herramientas de evaluación para decisiones de deployment.",
+            "skills.eyebrow": "Competencias", "skills.title": "Skills y herramientas",
+            "skill.evalLLM": "Evaluación de LLMs", "skill.infra": "Infraestructura", "skill.data": "Datos", "skill.monitor": "Monitoreo", "skill.db": "Bases de datos",
+            "exp.eyebrow": "Trayectoria", "exp.title": "Experiencia", "exp.more": "+19 competencias",
+            "exp.academyDesc": "Instructora en curso intensivo de programación (6 meses): ReactJS, JavaScript, HTML, CSS.",
+            "role.senior": "Senior Software Engineer", "role.pleno": "Software Engineer Semi-Senior",
+            "role.picpay": "Front-End Software Engineer Semi-Senior", "role.academy": "Monitora de Lógica de Programación y Front-end",
+            "role.front": "Front-end Developer",
+            "meta.jus1": "dic 2024 – actualidad · 1 año 6 meses", "meta.jus2": "ene 2022 – dic 2024 · 3 años",
+            "meta.picpay": "may 2021 – ene 2022 · 9 meses · Remoto", "meta.academy": "sep 2020 – may 2021 · 9 meses · Freelance · Remoto",
+            "meta.cubos": "ago 2020 – may 2021 · 10 meses · Prácticas · Remoto", "meta.diel": "oct 2019 – ago 2020 · 11 meses · Salvador · Híbrido",
+            "tag.microservices": "Microservicios", "tag.microfrontends": "Microfrontends",
+            "form.eyebrow": "Formación", "form.title": "Educación e idiomas", "edu.title": "Educación",
+            "edu.pos": "<strong style=\"color:var(--text)\">Posgrado en curso</strong> — Ingeniería de Software con Inteligencia Artificial",
+            "edu.bac": "<strong style=\"color:var(--text)\">Licenciatura</strong> — Ciencia y Tecnología, Universidade Federal da Bahia",
+            "langs.title": "Idiomas", "langs.pt": "🇧🇷 Portugués — nativo", "langs.es": "🇦🇷 Español — B2 intermedio-avanzado", "langs.en": "🇺🇸 Inglés — B1 intermedio",
+            "contact.eyebrow": "Contacto", "contact.title": "Hablemos", "contact.sub": "Descarga mi currículum en el idioma que prefieras:"
+        },
+        en: {
+            "nav.about": "About", "nav.focus": "Focus", "nav.skills": "Skills", "nav.experience": "Experience", "nav.contact": "Contact",
+            "hero.tagline": "Full-stack engineer for 5+ years, with growing specialization in LLM evaluation, prompt engineering and LLMOps. Combining technical rigor with real impact.",
+            "hero.cv": "↓ Download CV",
+            "sobre.eyebrow": "About", "sobre.title": "Who I am",
+            "sobre.lead": "I'm currently a Senior Software Engineer at <strong>Jusbrasil</strong>, a legaltech combining Law and Technology to widen access to justice.",
+            "sobre.p2": "I'm passionate about solving complex problems in AI systems and building innovative solutions with real impact — making sure legal AI systems are accurate, reliable and safe before they reach users.",
+            "foco.eyebrow": "Current focus", "foco.title": "LLM evaluation pipelines",
+            "foco.intro": "Designing and implementing LLM evaluation pipelines at Jusbrasil, across three fronts:",
+            "foco.c1t": "Automated Evaluation",
+            "foco.c1p": "Building <em>judges</em> to evaluate LLM-generated content against specific legal criteria.",
+            "foco.c2t": "Human-in-the-loop",
+            "foco.c2p": "Integrated manual evaluation platform, collecting human feedback for continuous validation and optimization.",
+            "foco.c3t": "Data-Driven Optimization",
+            "foco.c3p": "Rigorous use of quantitative benchmarks and evaluation tools for deployment decisions.",
+            "skills.eyebrow": "Skills", "skills.title": "Skills & tools",
+            "skill.evalLLM": "LLM Evaluation", "skill.infra": "Infrastructure", "skill.data": "Data", "skill.monitor": "Monitoring", "skill.db": "Databases",
+            "exp.eyebrow": "Journey", "exp.title": "Experience", "exp.more": "+19 skills",
+            "exp.academyDesc": "Instructor in a 6-month intensive coding bootcamp: ReactJS, JavaScript, HTML, CSS.",
+            "role.senior": "Senior Software Engineer", "role.pleno": "Mid-level Software Engineer",
+            "role.picpay": "Mid-level Front-End Software Engineer", "role.academy": "Programming Logic & Front-end Teaching Assistant",
+            "role.front": "Front-end Developer",
+            "meta.jus1": "Dec 2024 – present · 1 yr 6 mos", "meta.jus2": "Jan 2022 – Dec 2024 · 3 yrs",
+            "meta.picpay": "May 2021 – Jan 2022 · 9 mos · Remote", "meta.academy": "Sep 2020 – May 2021 · 9 mos · Freelance · Remote",
+            "meta.cubos": "Aug 2020 – May 2021 · 10 mos · Internship · Remote", "meta.diel": "Oct 2019 – Aug 2020 · 11 mos · Salvador · Hybrid",
+            "tag.microservices": "Microservices", "tag.microfrontends": "Microfrontends",
+            "form.eyebrow": "Education", "form.title": "Education & languages", "edu.title": "Education",
+            "edu.pos": "<strong style=\"color:var(--text)\">Postgraduate (in progress)</strong> — Software Engineering with Artificial Intelligence",
+            "edu.bac": "<strong style=\"color:var(--text)\">Bachelor's</strong> — Science and Technology, Universidade Federal da Bahia",
+            "langs.title": "Languages", "langs.pt": "🇧🇷 Portuguese — native", "langs.es": "🇦🇷 Spanish — B2 upper-intermediate", "langs.en": "🇺🇸 English — B1 intermediate",
+            "contact.eyebrow": "Contact", "contact.title": "Let's talk", "contact.sub": "Download my résumé in your preferred language:"
+        }
+    };
+
+    function setLang(lang) {
+        const dict = I18N[lang];
+        if (!dict) return;
+        document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+            const val = dict[el.getAttribute('data-i18n')];
+            if (val == null) return;
+            if (el.hasAttribute('data-i18n-html')) el.innerHTML = val;
+            else el.textContent = val;
+        });
+        document.querySelectorAll('.lang-switch button').forEach(function (b) {
+            b.classList.toggle('active', b.dataset.lang === lang);
+        });
+        try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+
+    let saved = null;
+    try { saved = localStorage.getItem('lang'); } catch (e) {}
+    setLang(saved && I18N[saved] ? saved : 'pt');
 </script>
 
 </body>
